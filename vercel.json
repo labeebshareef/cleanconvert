@@ -1,8 +1,5 @@
 {
-    "build": {
-        "env": {
-            "NODE_ENV": "production"
-        }
-    },
-    "outputDirectory": "out" 
+  "buildCommand": "npm run build",
+  "outputDirectory": "out",
+  "ignoreCommand": "echo ''"
 }
