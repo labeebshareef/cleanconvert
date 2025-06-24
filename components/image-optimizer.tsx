@@ -361,7 +361,11 @@ export function ImageOptimizer() {
 
           {images.length > 0 && (
             <ImagePreview 
-              images={images.slice(0, 3)} 
+              images={images.slice(0, 3).map(img => ({
+                ...img,
+                convertedUrl: img.optimizedUrl,
+                targetFormat: img.file.type.includes('png') ? 'png' : 'jpg'
+              }))} 
             />
           )}
         </div>

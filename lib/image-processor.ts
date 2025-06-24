@@ -60,7 +60,7 @@ export async function processImage(file: File, options: ProcessingOptions): Prom
                   const compressedFile = await imageCompression(
                     new File([blob], file.name, { type: blob.type }),
                     {
-                      quality,
+                      initialQuality: quality,
                       alwaysKeepResolution: true,
                     }
                   );
