@@ -19,7 +19,7 @@ export function Hero() {
     <section className="relative py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto text-center">
         <Badge variant="secondary" className="mb-4">
-          Created by Bolt.new
+          Browser-Based Tool
         </Badge>
         
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">

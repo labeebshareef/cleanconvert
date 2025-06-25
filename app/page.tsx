@@ -5,7 +5,7 @@ import { Features } from '@/components/features';
 
 export const metadata: Metadata = {
   title: 'CleanConvert - No BS. Just Image Tools.',
-  description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter.',
+  description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter. Created by Labeeb Shareef.',
   alternates: {
     canonical: '/',
   },

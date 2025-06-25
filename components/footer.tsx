@@ -15,10 +15,7 @@ export function Footer() {
               No BS. Just Image Tools.
             </p>
             <p className="text-xs text-muted-foreground">
-              Created by{' '}
-              <Link href="https://bolt.new" className="text-primary hover:underline">
-                Bolt.new
-              </Link>
+              Open source image processing tools
             </p>
           </div>
 

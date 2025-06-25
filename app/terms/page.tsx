@@ -131,8 +131,8 @@ export default function TermsPage() {
               </CardHeader>
               <CardContent className="prose prose-sm max-w-none">
                 <p>
-                  The CleanConvert service, including its design, code, and functionality, is owned by Bolt.new 
-                  and is protected by copyright and other intellectual property laws.
+                  The CleanConvert service, including its design, code, and functionality, is protected by 
+                  copyright and other intellectual property laws.
                 </p>
                 <p>
                   You retain all rights to images you process using CleanConvert. We claim no ownership or rights 
@@ -174,7 +174,7 @@ export default function TermsPage() {
               </CardHeader>
               <CardContent className="prose prose-sm max-w-none">
                 <p>
-                  To the maximum extent permitted by law, Bolt.new and CleanConvert shall not be liable for any 
+                  To the maximum extent permitted by law, CleanConvert shall not be liable for any 
                   indirect, incidental, special, consequential, or punitive damages, including but not limited to:
                 </p>
                 <ul>
@@ -263,15 +263,9 @@ export default function TermsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
-                  If you have any questions about these Terms of Service, please contact us:
+                  If you have any questions about these Terms of Service, please contact us through the project repository.
                 </p>
                 <div className="space-y-2">
-                  <p className="text-sm">
-                    <strong>Created by:</strong>{' '}
-                    <a href="https://bolt.new" className="text-primary hover:underline">
-                      Bolt.new
-                    </a>
-                  </p>
                   <p className="text-sm text-muted-foreground">
                     <strong>Last Updated:</strong> January 1, 2025
                   </p>

@@ -252,15 +252,9 @@ export default function PrivacyPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
                   If you have questions about this privacy policy or CleanConvert's privacy practices, 
-                  you can contact us through:
+                  you can contact us through the project repository.
                 </p>
                 <div className="space-y-2">
-                  <p className="text-sm">
-                    <strong>Created by:</strong>{' '}
-                    <a href="https://bolt.new" className="text-primary hover:underline">
-                      Bolt.new
-                    </a>
-                  </p>
                   <p className="text-sm text-muted-foreground">
                     <strong>Effective Date:</strong> January 1, 2025
                   </p>

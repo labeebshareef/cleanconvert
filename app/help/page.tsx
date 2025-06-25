@@ -230,12 +230,6 @@ export default function HelpPage() {
                 If you can't find the answer to your question here, feel free to reach out for support.
               </p>
               <div className="space-y-2">
-                <p className="text-sm">
-                  <strong>Created by:</strong>{' '}
-                  <a href="https://bolt.new" className="text-primary hover:underline">
-                    Bolt.new
-                  </a>
-                </p>
                 <p className="text-sm text-muted-foreground">
                   CleanConvert is built with privacy and simplicity in mind. No accounts, no tracking, just powerful image tools.
                 </p>

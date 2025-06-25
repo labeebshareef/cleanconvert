@@ -28,7 +28,7 @@ CleanConvert is a fast, privacy-respecting, and SEO-optimized image conversion a
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/cleanconvert.git
+   git clone https://github.com/labeebshareef/cleanconvert.git
    cd cleanconvert
    ```
 
@@ -108,7 +108,7 @@ The app is optimized for Core Web Vitals:
 
 Deploy to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/cleanconvert)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/labeebshareef/cleanconvert)
 
 Or manually:
 
@@ -124,13 +124,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 🙏 Credits
-
-Created by [Bolt.new](https://bolt.new) - Your AI-powered development assistant.
-
 ## 📞 Support
 
-For support and questions, please open an issue on GitHub.
+For support and questions, please open an issue on GitHub or contact through the project repository.
 
 ---
 

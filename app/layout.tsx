@@ -10,13 +10,13 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'CleanConvert - No BS. Just Image Tools.',
-  description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter. Created by Bolt.new.',
+  description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter. Created by Labeeb Shareef.',
   keywords: 'image converter, format conversion, JPG, PNG, WEBP, AVIF, privacy, no upload, browser-based',
-  authors: [{ name: 'Bolt.new', url: 'https://bolt.new' }],
-  creator: 'Bolt.new',
-  publisher: 'Bolt.new',
+  authors: [{ name: 'Labeeb Shareef', url: 'https://github.com/labeebshareef' }],
+  creator: 'Labeeb Shareef',
+  publisher: 'Labeeb Shareef',
   robots: 'index, follow',
-  metadataBase: new URL('https://cleanconvert.vercel.app'),
+  metadataBase: new URL('https://www.cleanconvert.online'),
   alternates: {
     canonical: '/',
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'CleanConvert - No BS. Just Image Tools.',
     description: 'Fast, privacy-respecting image converter. Zero uploads, zero storage, zero clutter.',
     images: ['/og-image.png'],
-    creator: '@bolt_new',
+    creator: '@labeebshareef',
   },
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#000000',
@@ -60,6 +60,35 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "CleanConvert",
+              "description": "Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter.",
+              "url": "https://www.cleanconvert.online",
+              "applicationCategory": "UtilitiesApplication",
+              "operatingSystem": "Web Browser",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Labeeb Shareef",
+                "url": "https://github.com/labeebshareef"
+              },
+              "creator": {
+                "@type": "Person",
+                "name": "Labeeb Shareef",
+                "url": "https://github.com/labeebshareef"
+              }
+            })
+          }}
+        />
       </head>
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col bg-background">
