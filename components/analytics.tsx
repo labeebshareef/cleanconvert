@@ -58,7 +58,7 @@ export function Analytics() {
 
       {/* Google AdSense */}
       <Script
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3066812168811933"
         strategy="afterInteractive"
         crossOrigin="anonymous"
       />
