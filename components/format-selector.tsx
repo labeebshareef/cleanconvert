@@ -9,6 +9,7 @@ const formats = [
   { value: 'png', label: 'PNG', description: 'Lossless, transparency' },
   { value: 'bmp', label: 'BMP', description: 'Uncompressed bitmap' },
   { value: 'tiff', label: 'TIFF', description: 'High quality, print' },
+  { value: 'ico', label: 'ICO', description: 'Icon format' },
 ];
 
 interface FormatSelectorProps {
