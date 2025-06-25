@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   },
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#000000',
+  other: {
+    'google-adsense-account': 'ca-pub-3066812168811933',
+  },
 };
 
 export default function RootLayout({
@@ -55,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-3066812168811933" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
