@@ -25,7 +25,7 @@ export function Analytics() {
     
     // Configure GA4
     gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID', {
+    gtag('config', 'G-2FXHBJYWS0', {
       anonymize_ip: true,
       send_page_view: false // We'll send page views manually
     });
@@ -35,7 +35,7 @@ export function Analytics() {
     <>
       {/* Google Analytics */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+        src="https://www.googletagmanager.com/gtag/js?id=G-2FXHBJYWS0"
         strategy="afterInteractive"
       />
       
