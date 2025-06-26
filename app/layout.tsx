@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'CleanConvert - No BS. Just Image Tools.',
   description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter. Created by Labeeb Shareef.',
-  keywords: 'free online image converter, jpg to png converter, png to webp converter, webp to avif converter, convert images in browser, image converter no upload, instant image conversion, privacy image converter, browser image converter, convert jpg png webp avif, offline image converter',
+  keywords: 'CleanConvert, clean convert image converter, free online image converter, jpg to png converter, png to webp converter, webp to avif converter, convert images in browser, image converter no upload, instant image conversion, privacy image converter, browser image converter, convert jpg png webp avif, offline image converter',
   authors: [{ name: 'Labeeb Shareef', url: 'https://github.com/labeebshareef' }],
   creator: 'Labeeb Shareef',
   publisher: 'Labeeb Shareef',
