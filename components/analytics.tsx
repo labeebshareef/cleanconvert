@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 
@@ -45,6 +45,7 @@ export function Analytics() {
   }
 
   return (
+    <Suspense fallback={null}>
     <>
       {/* Google Analytics */}
       <Script
@@ -123,5 +124,6 @@ export function Analytics() {
         }}
       />
     </>
+    </Suspense>
   );
 }
