@@ -15,17 +15,8 @@ import { BatchQueue } from '@/components/batch-queue';
 import { processImage } from '@/lib/image-processor';
 import { Upload, Download, Trash2, Image as ImageIcon, Zap, Settings2 } from 'lucide-react';
 import { toast } from 'sonner';
-
-interface ProcessedImage {
-  id: string;
-  file: File;
-  originalUrl: string;
-  convertedUrl?: string;
-  targetFormat: string;
-  quality: number;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-  error?: string;
-}
+import { ProcessedImage } from '@/types';
+import { trackFileUpload, trackConversion, trackConversionComplete, trackFeatureUsage, trackError } from '@/lib/analytics';
 
 export function ImageConverter() {
   const [images, setImages] = useState<ProcessedImage[]>([]);
@@ -35,6 +26,9 @@ export function ImageConverter() {
   const [activeTab, setActiveTab] = useState('single');
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
+    // Track file upload
+    trackFileUpload(acceptedFiles, 'drag_drop');
+    
     const newImages = acceptedFiles.map(file => ({
       id: Math.random().toString(36).substr(2, 9),
       file,
@@ -61,7 +55,24 @@ export function ImageConverter() {
 
     setIsProcessing(true);
     
-    for (const image of images.filter(img => img.status === 'pending')) {
+    // Track conversion start for the batch
+    const pendingImages = images.filter(img => img.status === 'pending');
+    if (pendingImages.length > 0) {
+      const firstImage = pendingImages[0];
+      const sourceFormat = firstImage.file.name.split('.').pop()?.toLowerCase() || 'unknown';
+      trackConversion(
+        sourceFormat,
+        firstImage.targetFormat,
+        firstImage.file.size,
+        firstImage.quality,
+        pendingImages.length
+      );
+    }
+    
+    for (const image of pendingImages) {
+      const startTime = performance.now();
+      const sourceFormat = image.file.name.split('.').pop()?.toLowerCase() || 'unknown';
+      
       try {
         setImages(prev => prev.map(img => 
           img.id === image.id 
@@ -75,6 +86,7 @@ export function ImageConverter() {
         });
 
         const convertedUrl = URL.createObjectURL(convertedBlob);
+        const processingTime = performance.now() - startTime;
 
         setImages(prev => prev.map(img => 
           img.id === image.id 
@@ -82,17 +94,50 @@ export function ImageConverter() {
             : img
         ));
 
+        // Track successful conversion completion
+        trackConversionComplete(
+          sourceFormat,
+          image.targetFormat,
+          image.file.size,
+          convertedBlob.size,
+          processingTime,
+          image.quality,
+          true
+        );
+
       } catch (error) {
+        const processingTime = performance.now() - startTime;
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        
         setImages(prev => prev.map(img => 
           img.id === image.id 
-            ? { ...img, status: 'error' as const, error: error instanceof Error ? error.message : 'Unknown error' }
+            ? { ...img, status: 'error' as const, error: errorMessage }
             : img
         ));
+
+        // Track conversion error
+        trackConversionComplete(
+          sourceFormat,
+          image.targetFormat,
+          image.file.size,
+          0,
+          processingTime,
+          image.quality,
+          false,
+          errorMessage
+        );
+
+        // Also track the error specifically
+        trackError('conversion_failed', errorMessage, {
+          fileFormat: sourceFormat,
+          fileSize: image.file.size,
+        });
       }
     }
 
     setIsProcessing(false);
-    toast.success('Image processing completed!');
+    const completedCount = images.filter(img => img.status === 'completed').length;
+    toast.success(`Image processing completed! ${completedCount} images converted successfully.`);
   };
 
   const downloadImage = (image: ProcessedImage) => {
@@ -100,15 +145,24 @@ export function ImageConverter() {
 
     const link = document.createElement('a');
     link.href = image.convertedUrl;
-    link.download = `${image.file.name.split('.')[0]}.${image.targetFormat}`;
+    const fileName = `${image.file.name.split('.')[0]}.${image.targetFormat}`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    // Track download
+    trackFeatureUsage('single_download', 'conversion', `${image.targetFormat}_format`);
   };
 
   const downloadAll = () => {
     const completedImages = images.filter(img => img.status === 'completed' && img.convertedUrl);
+    if (completedImages.length === 0) return;
+    
     completedImages.forEach(downloadImage);
+    
+    // Track batch download
+    trackFeatureUsage('batch_download', 'conversion', `${completedImages.length}_files`);
   };
 
   const clearQueue = () => {
@@ -153,7 +207,11 @@ export function ImageConverter() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                <Tabs value={activeTab} onValueChange={(value) => {
+                  // Track tab switching
+                  trackFeatureUsage('tab_switch', 'conversion', `from_${activeTab}_to_${value}`);
+                  setActiveTab(value);
+                }} className="w-full">
                   <TabsList className="grid w-full grid-cols-2 mb-6">
                     <TabsTrigger value="single" className="flex items-center gap-2">
                       <ImageIcon className="h-4 w-4" />
@@ -207,6 +265,8 @@ export function ImageConverter() {
                   <FormatSelector 
                     value={targetFormat} 
                     onChange={(value) => {
+                      // Track format selection
+                      trackFeatureUsage('format_selection', 'conversion', `from_${targetFormat}_to_${value}`);
                       setTargetFormat(value);
                       if (images.length > 0) {
                         setTimeout(updateAllImagesSettings, 100);
@@ -227,6 +287,8 @@ export function ImageConverter() {
                   <QualitySlider 
                     value={quality} 
                     onChange={(value) => {
+                      // Track quality adjustment
+                      trackFeatureUsage('quality_adjustment', 'conversion', `from_${quality}_to_${value}`);
                       setQuality(value);
                       if (images.length > 0) {
                         setTimeout(updateAllImagesSettings, 100);

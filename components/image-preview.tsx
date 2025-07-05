@@ -4,21 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Download, Eye } from 'lucide-react';
-
-interface ProcessedImage {
-  id: string;
-  file: File;
-  originalUrl: string;
-  convertedUrl?: string;
-  targetFormat: string;
-  quality: number;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-  error?: string;
-}
-
-interface ImagePreviewProps {
-  images: ProcessedImage[];
-}
+import { ImagePreviewProps, ProcessedImage } from '@/types';
 
 export function ImagePreview({ images }: ImagePreviewProps) {
   const formatFileSize = (bytes: number) => {

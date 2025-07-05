@@ -5,10 +5,18 @@ import { Badge } from '@/components/ui/badge';
 import { HelpCircle, FileImage, Upload, Download, Settings, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Help & FAQ - CleanConvert',
-  description: 'Get help with CleanConvert image tools. Find answers to common questions about image conversion, resizing, optimization, and batch processing.',
+  title: 'Help & FAQ - CleanConvert | Image Converter Support',
+  description: 'Complete guide to CleanConvert image tools. Learn how to convert JPG to PNG, resize images, batch process, and optimize images. Step-by-step tutorials and FAQs.',
+  keywords: 'image converter help, how to convert images, JPG to PNG tutorial, image resizing guide, batch image processing, WEBP conversion help, image optimization tutorial',
   alternates: {
     canonical: '/help',
+  },
+  openGraph: {
+    title: 'Help & FAQ - CleanConvert Image Converter',
+    description: 'Complete guide to using CleanConvert for image conversion, resizing, and optimization. Free tutorials and support.',
+    url: '/help',
+    images: ['/og-image.png'],
+    type: 'website',
   },
 };
 
@@ -84,8 +92,27 @@ const features = [
 ];
 
 export default function HelpPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <div className="py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema)
+        }}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">

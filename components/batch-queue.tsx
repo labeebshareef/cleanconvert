@@ -5,23 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Download, Trash2, Image as ImageIcon } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-
-interface ProcessedImage {
-  id: string;
-  file: File;
-  originalUrl: string;
-  convertedUrl?: string;
-  targetFormat: string;
-  quality: number;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-  error?: string;
-}
-
-interface BatchQueueProps {
-  images: ProcessedImage[];
-  onRemove: (id: string) => void;
-  onDownload: (image: ProcessedImage) => void;
-}
+import { BatchQueueProps, ProcessedImage } from '@/types';
 
 export function BatchQueue({ images, onRemove, onDownload }: BatchQueueProps) {
   const formatFileSize = (bytes: number) => {

@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FileUpload } from '@/components/file-upload';
 import { FormatSelector } from '@/components/format-selector';
 import { QualitySlider } from '@/components/quality-slider';
@@ -14,17 +13,7 @@ import { processImage } from '@/lib/image-processor';
 import { extractImagesFromZip, createZipFromImages } from '@/lib/zip-processor';
 import { Upload, Download, Trash2, Archive, Zap, Settings2 } from 'lucide-react';
 import { toast } from 'sonner';
-
-interface ProcessedImage {
-  id: string;
-  file: File;
-  originalUrl: string;
-  convertedUrl?: string;
-  targetFormat: string;
-  quality: number;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-  error?: string;
-}
+import { ProcessedImage } from '@/types';
 
 export function BatchProcessor() {
   const [images, setImages] = useState<ProcessedImage[]>([]);
@@ -180,13 +169,20 @@ export function BatchProcessor() {
   };
 
   const updateAllImagesSettings = () => {
-    setImages(prev => prev.map(img => ({
-      ...img,
-      targetFormat,
-      quality,
-      status: img.status === 'completed' ? 'pending' as const : img.status,
-      convertedUrl: img.status === 'completed' ? undefined : img.convertedUrl
-    })));
+    setImages(prev => prev.map(img => {
+      const updatedImg: ProcessedImage = {
+        ...img,
+        targetFormat,
+        quality,
+        status: img.status === 'completed' ? 'pending' : img.status,
+      };
+      
+      if (img.status === 'completed') {
+        delete (updatedImg as any).convertedUrl;
+      }
+      
+      return updatedImg;
+    }));
   };
 
   return (

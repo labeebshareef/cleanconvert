@@ -5,24 +5,26 @@ import { Toaster } from '@/components/ui/sonner';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Analytics } from '@/components/analytics';
+import { ErrorBoundary } from '@/components/error-boundary';
+import { PageTracker } from '@/components/page-tracker';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CleanConvert - No BS. Just Image Tools.',
-  description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter. Created by Labeeb Shareef.',
-  keywords: 'online image converter, convert JPG to PNG, PNG to WEBP, AVIF to JPG, free image converter, fast image converter, privacy-focused image tools, no upload converter, convert images offline, browser image converter, convert images without uploading, JPG PNG WEBP AVIF BMP TIFF converter, drag and drop image converter, web-based image conversion tool, instant image format changer, compress and convert images, image format conversion tool',
+  title: 'CleanConvert - Free Online Image Converter | JPG, PNG, WEBP, AVIF',
+  description: 'Free online image converter and optimizer. Convert JPG to PNG, PNG to WEBP, WEBP to AVIF instantly. No uploads, 100% privacy-focused, browser-based image tools. Resize, compress, and optimize images for web.',
+  keywords: 'free image converter, online image converter, convert JPG to PNG, PNG to WEBP, WEBP to AVIF, image optimizer, resize images, compress images, batch image converter, browser image tools, privacy image converter, no upload converter',
   authors: [{ name: 'Labeeb Shareef', url: 'https://github.com/labeebshareef' }],
   creator: 'Labeeb Shareef',
-  publisher: 'Labeeb Shareef',
+  publisher: 'CleanConvert',
   robots: 'index, follow',
   metadataBase: new URL('https://www.cleanconvert.online'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'CleanConvert - No BS. Just Image Tools.',
-    description: 'Fast, privacy-respecting image converter. Convert JPG, PNG, WEBP, AVIF and more. Zero uploads, zero storage, zero clutter.',
+    title: 'CleanConvert - Free Online Image Converter | No Uploads Required',
+    description: 'Convert images between JPG, PNG, WEBP, AVIF formats instantly. 100% privacy-focused, browser-based processing. No uploads, no registration, completely free.',
     url: '/',
     siteName: 'CleanConvert', 
     images: [
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'CleanConvert - No BS. Just Image Tools.',
+        alt: 'CleanConvert - Free Online Image Converter',
       },
     ],
     locale: 'en_US',
@@ -38,15 +40,19 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CleanConvert - No BS. Just Image Tools.',
-    description: 'Fast, privacy-respecting image converter. Zero uploads, zero storage, zero clutter.',
+    title: 'CleanConvert - Free Online Image Converter',
+    description: 'Convert images instantly with zero uploads. Privacy-focused, browser-based image tools.',
     images: ['/og-image.png'],
     creator: '@labeebshareef',
+    site: '@cleanconvert',
   },
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#000000',
+  category: 'technology',
+  classification: 'Image Conversion Tools',
   other: {
     'google-adsense-account': 'ca-pub-3066812168811933',
+    'google-site-verification': 'your-google-site-verification-code',
   },
 };
 
@@ -63,7 +69,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -95,15 +101,18 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="min-h-screen flex flex-col bg-background">
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
-        <Toaster />
-        <Analytics />
+        <ErrorBoundary>
+          <div className="min-h-screen flex flex-col bg-background">
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <Toaster />
+          <Analytics />
+          <PageTracker />
+        </ErrorBoundary>
       </body>
     </html>
   );

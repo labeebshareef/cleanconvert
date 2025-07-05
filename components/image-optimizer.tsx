@@ -12,19 +12,7 @@ import { ImagePreview } from '@/components/image-preview';
 import { processImage } from '@/lib/image-processor';
 import { Download, Trash2, Zap, FileImage, Settings2 } from 'lucide-react';
 import { toast } from 'sonner';
-
-interface OptimizedImage {
-  id: string;
-  file: File;
-  originalUrl: string;
-  optimizedUrl?: string;
-  originalSize: number;
-  optimizedSize?: number;
-  quality: number;
-  stripExif: boolean;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-  error?: string;
-}
+import { OptimizedImage } from '@/types';
 
 export function ImageOptimizer() {
   const [images, setImages] = useState<OptimizedImage[]>([]);
@@ -361,11 +349,19 @@ export function ImageOptimizer() {
 
           {images.length > 0 && (
             <ImagePreview 
-              images={images.slice(0, 3).map(img => ({
-                ...img,
-                convertedUrl: img.optimizedUrl,
-                targetFormat: img.file.type.includes('png') ? 'png' : 'jpg'
-              }))} 
+              images={images.slice(0, 3).map(img => {
+                const processedImage: import('@/types').ProcessedImage = {
+                  id: img.id,
+                  file: img.file,
+                  originalUrl: img.originalUrl,
+                  convertedUrl: img.optimizedUrl,
+                  targetFormat: img.file.type.includes('png') ? 'png' : 'jpg',
+                  quality: img.quality,
+                  status: img.status,
+                  error: img.error
+                };
+                return processedImage;
+              })} 
             />
           )}
         </div>

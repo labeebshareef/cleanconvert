@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { FileText, AlertTriangle, Shield, Globe } from 'lucide-react';
+import { FileText, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Terms of Service - CleanConvert',

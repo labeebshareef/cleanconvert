@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Shield, Eye, Server, Lock, Database, Globe } from 'lucide-react';
+import { Shield, Eye, Server, Lock, Database } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - CleanConvert',

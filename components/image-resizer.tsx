@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { processImage } from '@/lib/image-processor';
 import { Download, Maximize2, Smartphone, Monitor, Tablet } from 'lucide-react';
 import { toast } from 'sonner';
+import { ResizedImage } from '@/types';
 
 const presets = [
   { name: 'HD', width: 1920, height: 1080, icon: Monitor },
@@ -21,16 +22,6 @@ const presets = [
   { name: 'Square', width: 1080, height: 1080, icon: Maximize2 },
   { name: 'Instagram', width: 1080, height: 1080, icon: Maximize2 },
 ];
-
-interface ResizedImage {
-  id: string;
-  file: File;
-  originalUrl: string;
-  resizedUrl?: string;
-  width: number;
-  height: number;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-}
 
 export function ImageResizer() {
   const [images, setImages] = useState<ResizedImage[]>([]);
