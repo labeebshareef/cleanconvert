@@ -11,7 +11,8 @@ declare global {
   }
 }
 
-export function Analytics() {
+// Internal component that uses useSearchParams
+function AnalyticsTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -34,6 +35,10 @@ export function Analytics() {
     return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+export function Analytics() {
   // Prevent tracking in development and localhost
   if (process.env.NODE_ENV === 'development' || 
       (typeof window !== 'undefined' && (
@@ -45,8 +50,12 @@ export function Analytics() {
   }
 
   return (
-    <Suspense fallback={null}>
     <>
+      {/* Page view tracking wrapped in Suspense */}
+      <Suspense fallback={null}>
+        <AnalyticsTracker />
+      </Suspense>
+      
       {/* Google Analytics */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-58VTTL0ZPX"
@@ -124,6 +133,5 @@ export function Analytics() {
         }}
       />
     </>
-    </Suspense>
   );
 }

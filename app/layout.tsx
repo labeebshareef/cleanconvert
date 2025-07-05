@@ -46,14 +46,18 @@ export const metadata: Metadata = {
     creator: '@labeebshareef',
     site: '@cleanconvert',
   },
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#000000',
   category: 'technology',
   classification: 'Image Conversion Tools',
   other: {
     'google-adsense-account': 'ca-pub-3066812168811933',
     'google-site-verification': 'your-google-site-verification-code',
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
 };
 
 export default function RootLayout({
