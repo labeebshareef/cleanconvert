@@ -1,7 +1,25 @@
 import Link from 'next/link';
 import { Zap } from 'lucide-react';
+import { useEffect } from 'react';
+
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
 
 export function Footer() {
+  useEffect(() => {
+    // Initialize AdSense ads
+    if (typeof window !== 'undefined' && window.adsbygoogle) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (error) {
+        console.warn('AdSense initialization failed:', error);
+      }
+    }
+  }, []);
+
   return (
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -83,9 +101,14 @@ export function Footer() {
               © 2025 CleanConvert. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
-              {/* AdSense Space */}
-              <div className="h-8 bg-muted/20 rounded px-4 flex items-center">
-                <span className="text-xs text-muted-foreground">Ad Space</span>
+              {/* Google AdSense - Small Banner */}
+              <div className="h-8 flex items-center">
+                <ins className="adsbygoogle"
+                  style={{ display: 'inline-block', width: '320px', height: '50px' }}
+                  data-ad-client="ca-pub-3066812168811933"
+                  data-ad-slot="6214735116"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"></ins>
               </div>
             </div>
           </div>
