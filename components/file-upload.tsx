@@ -72,7 +72,7 @@ export function FileUpload({
           ${isDragActive ? 'border-primary bg-primary/5' : 'border-muted-foreground/25 hover:border-primary/50'}
         `}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} aria-label="Upload image files for conversion" />
         <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
         {isDragActive ? (
           <p className="text-lg">Drop files here...</p>

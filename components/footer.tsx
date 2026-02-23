@@ -66,12 +66,33 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold">Privacy</h3>
+            <h3 className="text-sm font-semibold">Popular Conversions</h3>
             <ul className="space-y-2 text-sm">
-              <li className="text-muted-foreground">Zero Uploads</li>
-              <li className="text-muted-foreground">Zero Storage</li>
-              <li className="text-muted-foreground">Zero Clutter</li>
-              <li className="text-muted-foreground">100% Browser-Based</li>
+              <li>
+                <Link href="/convert/jpg-to-png" className="text-muted-foreground hover:text-primary transition-colors">
+                  JPG to PNG
+                </Link>
+              </li>
+              <li>
+                <Link href="/convert/png-to-webp" className="text-muted-foreground hover:text-primary transition-colors">
+                  PNG to WEBP
+                </Link>
+              </li>
+              <li>
+                <Link href="/convert/jpg-to-webp" className="text-muted-foreground hover:text-primary transition-colors">
+                  JPG to WEBP
+                </Link>
+              </li>
+              <li>
+                <Link href="/convert/webp-to-jpg" className="text-muted-foreground hover:text-primary transition-colors">
+                  WEBP to JPG
+                </Link>
+              </li>
+              <li>
+                <Link href="/convert/svg-to-png" className="text-muted-foreground hover:text-primary transition-colors">
+                  SVG to PNG
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -4,6 +4,7 @@ import { ImageConverter } from '@/components/image-converter';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Zap, TrendingUp } from 'lucide-react';
+import { conversions } from '@/lib/conversions';
 
 export const metadata: Metadata = {
   title: 'Free Online Image Converter - Convert JPG to PNG, WEBP, AVIF | CleanConvert',
@@ -59,11 +60,25 @@ export default function ConvertPage() {
       badge: 'Most Popular'
     },
     {
+      title: 'PNG to JPG',
+      description: 'Reduce PNG file sizes dramatically',
+      href: '/convert/png-to-jpg',
+      searches: '12K searches/month',
+      badge: 'High Demand'
+    },
+    {
       title: 'PNG to WEBP',
       description: 'Reduce file size by 70% with WEBP format',
       href: '/convert/png-to-webp',
       searches: '8K searches/month',
       badge: 'Best Compression'
+    },
+    {
+      title: 'JPG to WEBP',
+      description: 'Modern format for faster websites',
+      href: '/convert/jpg-to-webp',
+      searches: '6K searches/month',
+      badge: 'Web Optimized'
     },
     {
       title: 'WEBP to JPG',
@@ -73,6 +88,20 @@ export default function ConvertPage() {
       badge: 'Universal'
     },
     {
+      title: 'WEBP to PNG',
+      description: 'Lossless quality from WEBP files',
+      href: '/convert/webp-to-png',
+      searches: '4K searches/month',
+      badge: 'Lossless'
+    },
+    {
+      title: 'SVG to PNG',
+      description: 'Rasterize vector graphics to PNG',
+      href: '/convert/svg-to-png',
+      searches: '3K searches/month',
+      badge: 'Vectors'
+    },
+    {
       title: 'JPG to AVIF',
       description: 'Next-gen format with 50% smaller file sizes',
       href: '/convert/jpg-to-avif',
@@ -80,6 +109,10 @@ export default function ConvertPage() {
       badge: 'Future-Proof'
     },
   ];
+
+  const allConversions = Object.values(conversions).filter(
+    (c) => !popularConversions.some((p) => p.href === `/convert/${c.slug}`)
+  );
 
   return (
     <div className="py-8">
@@ -153,6 +186,32 @@ export default function ConvertPage() {
             All conversions are processed locally in your browser for maximum privacy and security.
           </p>
         </div>
+
+        {/* All Other Conversions (SEO internal links) */}
+        {allConversions.length > 0 && (
+          <div className="mt-16">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold mb-4">All Image Conversions</h2>
+              <p className="text-muted-foreground">
+                Browse every supported format conversion
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {allConversions.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/convert/${c.slug}`}
+                  className="flex items-center justify-between p-4 rounded-lg border hover:border-primary/50 hover:shadow-sm transition-all group"
+                >
+                  <span className="text-sm font-medium group-hover:text-primary transition-colors">
+                    {c.sourceLabel} to {c.targetLabel}
+                  </span>
+                  <ArrowRight className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

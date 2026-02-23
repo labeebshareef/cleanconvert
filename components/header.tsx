@@ -23,7 +23,9 @@ const navigation = [
 
 const popularConversions = [
   { name: 'JPG to PNG', href: '/convert/jpg-to-png' },
+  { name: 'PNG to JPG', href: '/convert/png-to-jpg' },
   { name: 'PNG to WEBP', href: '/convert/png-to-webp' },
+  { name: 'JPG to WEBP', href: '/convert/jpg-to-webp' },
   { name: 'WEBP to JPG', href: '/convert/webp-to-jpg' },
   { name: 'JPG to AVIF', href: '/convert/jpg-to-avif' },
 ];

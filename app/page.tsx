@@ -26,9 +26,13 @@ export const metadata: Metadata = {
 export default function Home() {
   const quickConversions = [
     { name: 'JPG to PNG', href: '/convert/jpg-to-png', popular: true },
+    { name: 'PNG to JPG', href: '/convert/png-to-jpg', popular: true },
     { name: 'PNG to WEBP', href: '/convert/png-to-webp', popular: true },
+    { name: 'JPG to WEBP', href: '/convert/jpg-to-webp', popular: true },
     { name: 'WEBP to JPG', href: '/convert/webp-to-jpg', popular: false },
+    { name: 'SVG to PNG', href: '/convert/svg-to-png', popular: false },
     { name: 'JPG to AVIF', href: '/convert/jpg-to-avif', popular: false },
+    { name: 'WEBP to PNG', href: '/convert/webp-to-png', popular: false },
   ];
 
   return (

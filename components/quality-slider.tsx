@@ -40,6 +40,7 @@ export function QualitySlider({ value, onChange }: QualitySliderProps) {
         min={10}
         step={5}
         className="w-full"
+        aria-label={`Image quality: ${value}%`}
       />
       
       <div className="flex justify-between text-xs text-muted-foreground">

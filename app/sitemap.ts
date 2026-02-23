@@ -1,10 +1,12 @@
 import { MetadataRoute } from 'next';
+import { getAllConversionSlugs } from '@/lib/conversions';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.cleanconvert.online';
   const currentDate = new Date();
-  
-  return [
+
+  // Core pages
+  const corePages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -53,32 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.5,
     },
-    // Additional pages for specific conversions
-    {
-      url: `${baseUrl}/convert/jpg-to-png`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/convert/png-to-webp`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/convert/webp-to-jpg`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/convert/jpg-to-avif`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    // Blog pages
     {
       url: `${baseUrl}/blog`,
       lastModified: currentDate,
@@ -92,4 +68,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  // Auto-generate entries for every conversion route
+  const conversionPages: MetadataRoute.Sitemap = getAllConversionSlugs().map(
+    (slug) => ({
+      url: `${baseUrl}/convert/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })
+  );
+
+  return [...corePages, ...conversionPages];
 }

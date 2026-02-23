@@ -193,8 +193,9 @@ export function ImageConverter({ defaultFormat, defaultSourceHint: _sourceHint }
   };
 
   return (
-    <section id="image-converter" className="py-12 px-4 sm:px-6 lg:px-8">
+    <section id="image-converter" className="py-12 px-4 sm:px-6 lg:px-8" aria-label="Image converter tool">
       <div className="container mx-auto max-w-7xl">
+        <h2 className="sr-only">Image Converter Tool</h2>
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           {/* Main Content Area */}
           <div className="xl:col-span-3 space-y-6">
@@ -234,7 +235,7 @@ export function ImageConverter({ defaultFormat, defaultSourceHint: _sourceHint }
                         ${isDragActive ? 'border-primary bg-primary/5' : 'border-muted-foreground/25 hover:border-primary/50'}
                       `}
                     >
-                      <input {...getInputProps()} />
+                      <input {...getInputProps()} aria-label="Upload images or ZIP files for batch conversion" />
                       <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                       {isDragActive ? (
                         <p className="text-lg">Drop files here...</p>
