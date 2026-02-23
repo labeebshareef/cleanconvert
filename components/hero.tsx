@@ -1,20 +1,8 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Shield, Zap } from 'lucide-react';
+import { Shield, Zap, Upload } from 'lucide-react';
+import { HeroButton } from '@/components/hero-button';
 
 export function Hero() {
-  const scrollToConverter = () => {
-    const converterSection = document.getElementById('image-converter');
-    if (converterSection) {
-      converterSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto text-center">
@@ -23,14 +11,15 @@ export function Hero() {
         </Badge>
         
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
-          <span className="text-primary">No BS.</span>
+          Free Online Image Converter
           <br />
-          Just Image Tools.
+          <span className="text-primary">JPG, PNG, WEBP, AVIF</span>
         </h1>
         
         <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Fast, privacy-respecting image converter. Zero uploads, zero storage, zero clutter. 
-          Convert JPG, PNG, WEBP, AVIF and more—all in your browser.
+          Convert, resize, and optimize images instantly in your browser. 
+          No uploads to servers, no registration, 100% private and free.
+          Supports JPG, PNG, WEBP, AVIF, BMP, TIFF and more.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -48,9 +37,7 @@ export function Hero() {
           </div>
         </div>
 
-        <Button size="lg" className="text-lg px-8 py-6" onClick={scrollToConverter}>
-          Start Converting Now
-        </Button>
+        <HeroButton />
       </div>
     </section>
   );

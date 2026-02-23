@@ -11,9 +11,12 @@ import { PageTracker } from '@/components/page-tracker';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CleanConvert - Free Online Image Converter | JPG, PNG, WEBP, AVIF',
+  title: {
+    default: 'CleanConvert - Free Online Image Converter | JPG, PNG, WEBP, AVIF',
+    template: '%s | CleanConvert',
+  },
   description: 'Free online image converter and optimizer. Convert JPG to PNG, PNG to WEBP, WEBP to AVIF instantly. No uploads, 100% privacy-focused, browser-based image tools. Resize, compress, and optimize images for web.',
-  keywords: 'free image converter, online image converter, convert JPG to PNG, PNG to WEBP, WEBP to AVIF, image optimizer, resize images, compress images, batch image converter, browser image tools, privacy image converter, no upload converter',
+  keywords: ['image converter', 'convert JPG to PNG', 'PNG to WEBP', 'WEBP to AVIF', 'image optimizer', 'resize images', 'compress images', 'batch image converter', 'free online image converter', 'browser image tools', 'privacy image converter'],
   authors: [{ name: 'Labeeb Shareef', url: 'https://github.com/labeebshareef' }],
   creator: 'Labeeb Shareef',
   publisher: 'CleanConvert',
@@ -50,7 +53,6 @@ export const metadata: Metadata = {
   classification: 'Image Conversion Tools',
   other: {
     'google-adsense-account': 'ca-pub-3066812168811933',
-    'google-site-verification': 'your-google-site-verification-code',
   },
 };
 

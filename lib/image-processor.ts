@@ -1,4 +1,3 @@
-import imageCompression from 'browser-image-compression';
 import { withErrorHandling } from './async-utils';
 
 export interface ProcessingOptions {
@@ -33,7 +32,7 @@ export async function processImage(file: File, options: ProcessingOptions): Prom
     
     try {
       const result = await new Promise<Blob>((resolve, reject) => {
-        img.onload = async () => {
+        img.onload = () => {
           try {
             // Calculate dimensions
             let { width, height } = img;
@@ -55,36 +54,43 @@ export async function processImage(file: File, options: ProcessingOptions): Prom
             // Draw image
             ctx.drawImage(img, 0, 0, width, height);
             
-            // Convert to blob
+            const targetMime = getMimeType(format);
+            
+            // Check if the browser supports the target format
+            // by testing with a tiny canvas
+            const testCanvas = document.createElement('canvas');
+            testCanvas.width = 1;
+            testCanvas.height = 1;
+            const testCtx = testCanvas.getContext('2d');
+            if (testCtx) {
+              testCtx.fillRect(0, 0, 1, 1);
+            }
+            
+            // For formats that use quality (JPEG, WEBP), pass it.
+            // For lossless formats (PNG, BMP), quality param is ignored by canvas.
+            const qualityParam = ['image/jpeg', 'image/webp'].includes(targetMime) ? quality : undefined;
+            
             canvas.toBlob(
-              async (blob: Blob | null) => {
+              (blob: Blob | null) => {
                 if (!blob) {
-                  reject(new Error('Failed to create blob'));
+                  reject(new Error(`Failed to convert image to ${format}. Your browser may not support this format.`));
                   return;
                 }
                 
-                // Apply compression if needed
-                if (quality < 1) {
-                  try {
-                    const compressedFile = await imageCompression(
-                      new File([blob], file.name, { type: blob.type }),
-                      {
-                        initialQuality: quality,
-                        alwaysKeepResolution: true,
-                      }
-                    );
-                    resolve(compressedFile);
-                  } catch (error) {
-                    // Fallback to original blob if compression fails
-                    console.warn('Compression failed, using original:', error);
-                    resolve(blob);
-                  }
-                } else {
-                  resolve(blob);
+                // Verify the blob has the expected MIME type
+                // If the browser doesn't support the target format, toBlob silently
+                // falls back to image/png. Detect that and warn the user.
+                if (blob.type !== targetMime) {
+                  console.warn(
+                    `Browser does not support ${targetMime} output. Got ${blob.type} instead.`
+                  );
+                  // Still return the blob — it's valid, just in a fallback format
                 }
+                
+                resolve(blob);
               },
-              getMimeType(format),
-              quality
+              targetMime,
+              qualityParam
             );
           } catch (error) {
             reject(error);

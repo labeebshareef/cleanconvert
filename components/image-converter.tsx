@@ -18,9 +18,9 @@ import { toast } from 'sonner';
 import { ProcessedImage } from '@/types';
 import { trackFileUpload, trackConversion, trackConversionComplete, trackFeatureUsage, trackError } from '@/lib/analytics';
 
-export function ImageConverter() {
+export function ImageConverter({ defaultFormat, defaultSourceHint: _sourceHint }: { defaultFormat?: string; defaultSourceHint?: string } = {}) {
   const [images, setImages] = useState<ProcessedImage[]>([]);
-  const [targetFormat, setTargetFormat] = useState('webp');
+  const [targetFormat, setTargetFormat] = useState(defaultFormat || 'webp');
   const [quality, setQuality] = useState(85);
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeTab, setActiveTab] = useState('single');

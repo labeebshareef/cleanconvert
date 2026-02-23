@@ -19,7 +19,7 @@ export async function safeProcessImage(
   onProgress?: (progress: number) => void
 ): Promise<{ success: true; blob: Blob; url: string } | { success: false; error: ImageProcessingError }> {
   try {
-    const { processImage } = await import('./image-processor-new');
+    const { processImage } = await import('./image-processor');
     
     // Validate file
     if (!file || !file.type.startsWith('image/')) {

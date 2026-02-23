@@ -1,16 +1,17 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { ImageConverter } from '@/components/image-converter';
 
 export const metadata: Metadata = {
-  title: 'Convert JPG to PNG Online Free - CleanConvert',
-  description: 'Convert JPG to PNG format instantly with our free online converter. No uploads, no registration. Fast, private, browser-based JPG to PNG conversion.',
-  keywords: 'convert JPG to PNG, JPG to PNG converter, JPEG to PNG, image converter, free online converter, JPG PNG conversion',
+  title: 'Convert JPG to PNG Online Free - No Upload',
+  description: 'Convert JPG to PNG format instantly with our free online converter. No uploads required, 100% browser-based. Add transparency support, preserve quality. Fast JPG to PNG conversion.',
+  keywords: ['convert JPG to PNG', 'JPG to PNG converter', 'JPEG to PNG', 'free image converter', 'online JPG to PNG', 'add transparency to JPG'],
   alternates: {
     canonical: '/convert/jpg-to-png',
   },
   openGraph: {
-    title: 'Convert JPG to PNG Online Free - CleanConvert',
-    description: 'Convert JPG to PNG format instantly. Free, fast, and private conversion tool.',
+    title: 'Convert JPG to PNG Online Free - No Upload Required',
+    description: 'Convert JPG to PNG format instantly. Add transparency, preserve quality. Free, fast, private browser-based conversion.',
     url: '/convert/jpg-to-png',
     images: ['/og-image.png'],
     type: 'website',
@@ -58,7 +59,7 @@ export default function JpgToPngPage() {
             Convert JPG images to PNG format instantly. Perfect for adding transparency or ensuring lossless quality. No uploads, completely free.
           </p>
         </div>
-        <ImageConverter />
+        <ImageConverter defaultFormat="png" defaultSourceHint="jpg" />
         
         <div className="mt-12 prose prose-lg max-w-4xl mx-auto">
           <h2>Why Convert JPG to PNG?</h2>
@@ -87,6 +88,14 @@ export default function JpgToPngPage() {
           <p>
             <strong>PNG:</strong> Best for graphics, logos, and images with text. Uses lossless compression and supports transparency, but creates larger files.
           </p>
+
+          <h2>Related Image Conversions</h2>
+          <ul>
+            <li><Link href="/convert/png-to-webp">Convert PNG to WEBP</Link> — Reduce PNG file size by up to 80%</li>
+            <li><Link href="/convert/jpg-to-avif">Convert JPG to AVIF</Link> — Next-gen format with 50% smaller files</li>
+            <li><Link href="/convert/webp-to-jpg">Convert WEBP to JPG</Link> — Universal compatibility for any device</li>
+            <li><Link href="/convert">All Image Conversions</Link> — Browse all supported formats</li>
+          </ul>
         </div>
       </div>
     </div>

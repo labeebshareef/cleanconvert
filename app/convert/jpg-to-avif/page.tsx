@@ -1,15 +1,16 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { ImageConverter } from '@/components/image-converter';
 
 export const metadata: Metadata = {
-  title: 'Convert JPG to AVIF Online Free - CleanConvert',
-  description: 'Convert JPG to AVIF format for next-gen image compression. Reduce file sizes by 50% while maintaining quality. Free online JPG to AVIF converter.',
-  keywords: 'convert JPG to AVIF, JPG to AVIF converter, next-gen image format, image compression, reduce file size, modern image format',
+  title: 'Convert JPG to AVIF Free - Next-Gen Format',
+  description: 'Convert JPG to AVIF format for next-generation image compression. Reduce file sizes by 50% while maintaining superior quality. Free online JPG to AVIF converter, no uploads.',
+  keywords: ['convert JPG to AVIF', 'JPG to AVIF converter', 'next-gen image format', 'image compression', 'reduce file size', 'AVIF converter'],
   alternates: {
     canonical: '/convert/jpg-to-avif',
   },
   openGraph: {
-    title: 'Convert JPG to AVIF Online Free - CleanConvert',
+    title: 'Convert JPG to AVIF Free - Next-Gen Format',
     description: 'Convert JPG to AVIF format for superior compression and quality. Free, fast, and private conversion.',
     url: '/convert/jpg-to-avif',
     images: ['/og-image.png'],
@@ -58,7 +59,7 @@ export default function JpgToAvifPage() {
             Convert JPG images to AVIF format for next-generation compression. Reduce file sizes by 50% while maintaining superior quality.
           </p>
         </div>
-        <ImageConverter />
+        <ImageConverter defaultFormat="avif" defaultSourceHint="jpg" />
         
         <div className="mt-12 prose prose-lg max-w-4xl mx-auto">
           <h2>Why Convert JPG to AVIF?</h2>
@@ -102,6 +103,14 @@ export default function JpgToAvifPage() {
             <li>Mobile-first applications</li>
             <li>Content delivery networks (CDNs)</li>
             <li>Performance-critical web applications</li>
+          </ul>
+
+          <h2>Related Image Conversions</h2>
+          <ul>
+            <li><Link href="/convert/jpg-to-png">Convert JPG to PNG</Link> — Add transparency to JPG images</li>
+            <li><Link href="/convert/png-to-webp">Convert PNG to WEBP</Link> — Reduce PNG file size by up to 80%</li>
+            <li><Link href="/convert/webp-to-jpg">Convert WEBP to JPG</Link> — Universal compatibility for any device</li>
+            <li><Link href="/convert">All Image Conversions</Link> — Browse all supported formats</li>
           </ul>
         </div>
       </div>
