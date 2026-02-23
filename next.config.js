@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -9,7 +8,6 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   images: { 
-    unoptimized: true,
     formats: ['image/webp', 'image/avif'],
   },
   // Enable React strict mode
